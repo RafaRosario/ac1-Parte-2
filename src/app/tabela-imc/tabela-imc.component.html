@@ -1,0 +1,24 @@
+<div class="col-md-12">
+    <form [formGroup]="form" (ngSubmit)="calcular()">
+        <div class="mb-3">
+            <label for="Peso" class="form-label">peso</label>
+            <input formControlName="peso" type="number" class="form-control" [(ngModel)]="peso" >
+            <div style="color: red;" *ngIf="form.get('peso').invalid && (form.get('peso').dirty || form.get('peso').touched)">
+                <div *ngIf="form.get('peso').errors['required']">O Peso é obrigatório</div>
+                <div *ngIf="form.get('peso').errors['min']">O peso minimo é 1 KG</div>
+                <div *ngIf="form.get('peso').errors['max']">O peso Máximo é 500 KG</div>
+              </div>            
+        </div>
+        <div class="mb-3">
+            <label for="Peso" class="form-label">altura</label>
+            <input formControlName="altura" type="number" class="form-control" [(ngModel)]="altura">
+            <div style="color: red;" *ngIf="form.get('altura').invalid && (form.get('altura').dirty || form.get('altura').touched)">
+                <div *ngIf="form.get('altura').errors['required']"> A Altura é obrigatória</div>
+                <div *ngIf="form.get('altura').errors['min']">A altura minima é 0,01 Metros</div>
+                <div *ngIf="form.get('altura').errors['max']">A altura minima é 3 Metros</div>
+              </div>            
+        </div>
+        <button [disabled]="!form.valid" class="btn btn-primary" type="submit">Calcular</button>
+        <p>{{resultado}}</p>
+    
+    </form>
